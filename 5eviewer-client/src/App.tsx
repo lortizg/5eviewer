@@ -1,18 +1,11 @@
 import './App.css';
-import axios from 'axios';
+import { CharacterCreator } from './pages/characterCreator';
 
-function App() {
-	const logeo = async () => {
-		const response = await axios.get('https://5e.tools/data/feats.json');
-		console.log(response.data);
-	}
-	return (
-		<div className="App">
-			<button
-				onClick={logeo}
-			>hola</button>
-		</div>
-	);
+const App = () => {
+	
+	return <>
+		<CharacterCreator/>
+	</>
 }
 
 export default App;
