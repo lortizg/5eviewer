@@ -7,6 +7,7 @@ export const ClassSelector = ({ selectedClass: handleParentClassSelection }: any
 	const [classes, setClasses] = useState([] as ClassInfo[]);
 	const [selectedClassIndex, setSelectedClassIndex] = useState(-1);
 	const [selectedClassSourceIndex, setSelectedClassSource] = useState(-1);
+	const [selectedSubClassIndex, setSelectedSubClassIndex] = useState(-1);
 
 	const getInitialData = async () => {
 		const classListResult = Object.values((await axios.get('https://5e.tools/data/class/index.json')).data) as string[];
@@ -26,14 +27,17 @@ export const ClassSelector = ({ selectedClass: handleParentClassSelection }: any
 		const selectedArray: string[] = e.target.value.split('|');
 		setSelectedClassIndex(Number(selectedArray[0]));
 		setSelectedClassSource(Number(selectedArray[1]));
-
-		handleParentClassSelection({ class: classes[Number(selectedArray[0])], source: classes[Number(selectedArray[0])].class[Number(selectedArray[1])].source });
 	}
 
 	const handleSubClassSelection = (e: SelectChangeEvent) => {
-		const selectedArray: string[] = e.target.value.split('|');
+		const selectedSubClassIndexInput = Number(e.target.value);
+		setSelectedSubClassIndex(selectedSubClassIndexInput);
 
-		handleParentClassSelection({ class: classes[Number(selectedArray[0])], source: selectedArray[1] });
+		handleParentClassSelection({
+			class: classes[selectedClassIndex],
+			source: classes[selectedClassIndex].class[selectedClassSourceIndex].source,
+			subclass: classes[selectedClassIndex].subclass[selectedSubClassIndexInput].name
+		});
 	}
 	useEffect(() => {
 		getInitialData();
@@ -70,21 +74,20 @@ export const ClassSelector = ({ selectedClass: handleParentClassSelection }: any
 					<Select
 						labelId="demo-simple-select-standard-label"
 						id="demo-simple-select-standard"
-						value={'|'}
+						value={selectedSubClassIndex.toString()}
 						onChange={handleSubClassSelection}
 						label="Subclass"
 					>
-						<MenuItem value="|">
+						<MenuItem value="-1">
 							<em>None</em>
 						</MenuItem>
-						{/* { inputSelectedClass !== '|' &&
-							// classes[selectedClassIndex].class[selectedClassSourceIndex].map((currentClass, i) => {
-							// 	return currentClass.class.map((classSource, sourceindex) => {
-							// 		return <MenuItem value={i + '|' + classSource.name + '|' + classSource.source} key={'class-' + i + '-' + sourceindex}>{classSource.name} - {classSource.source}</MenuItem>
-							// 	})
-
-							// })
-						} */}
+						{selectedClassIndex !== -1 &&
+							classes[selectedClassIndex].subclass.map((currentSubClass, i) => {
+								if (classes[selectedClassIndex].subclass[i].classSource === classes[selectedClassIndex].class[selectedClassSourceIndex].source)
+									return <MenuItem value={i} key={'subclass-' + i + '-' + currentSubClass}>{currentSubClass.name} - {currentSubClass.source}</MenuItem>
+								else return '';
+							})
+						}
 					</Select >
 				</FormControl >
 			</>

@@ -1,7 +1,8 @@
 
 export type SelectedClass = {
 	class: string,
-	source: string
+	source: string,
+	subclassIndex?: string
 }
 
 export type ClassInfo = {
