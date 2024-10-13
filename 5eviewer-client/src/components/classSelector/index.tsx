@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { ClassInfo } from "../../types";
+import { ClassInfo } from "../../types/Class";
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 
 export const ClassSelector = ({ selectedClass: handleParentClassSelection }: any) => {

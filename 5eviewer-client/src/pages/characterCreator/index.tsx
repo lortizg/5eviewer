@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SelectedClass } from "../../types";
+import { SelectedClass } from "../../types/Class";
 import { ClassSelector } from "../../components/classSelector";
 
 export const CharacterCreator = () => {

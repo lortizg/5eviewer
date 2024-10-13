@@ -1,4 +1,4 @@
-import { SelectedClass } from "../../types"
+import { SelectedClass } from "../../types/Class"
 
 export type ClassSelectorProps = {
 	selectedClass: SelectedClass
