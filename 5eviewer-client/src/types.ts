@@ -1,7 +1,7 @@
 
 export type SelectedClass = {
 	class: string,
-	source: Source
+	source: string
 }
 
 export type ClassInfo = {
@@ -14,7 +14,7 @@ export type ClassInfo = {
 
 export type Class = {
 	name: string;
-	source: Source;
+	source: string;
 	page: number;
 	srd?: boolean;
 	basicRules?: boolean;
@@ -72,8 +72,6 @@ export type PrimaryAbility = {
 	int: boolean;
 }
 
-export type Source = "" | "PHB" | "XPHB" | "TCE" | "EGW" | "TDCSR" | "XGE";
-
 export type StartingEquipment = {
 	additionalFromBackground?: boolean;
 	default?: string[];
@@ -121,12 +119,12 @@ export type Choose = {
 
 export type WelcomeClassFeature = {
 	name: string;
-	source: Source;
+	source: string;
 	page: number;
 	srd?: boolean;
 	basicRules?: boolean;
-	className: "Wizard";
-	classSource: Source;
+	className: string;
+	classSource: string;
 	level: number;
 	entries: Array<PurpleEntry | string>;
 	isClassFeatureVariant?: boolean;
@@ -168,9 +166,9 @@ export type Meta = {
 export type Subclass = {
 	name: string;
 	shortName: string;
-	source: Source;
-	className: "Wizard";
-	classSource: Source;
+	source: string;
+	className: string;
+	classSource: string;
 	page?: number;
 	reprintedAs?: string[];
 	edition?: Edition;
@@ -201,10 +199,10 @@ export type The1 = {
 
 export type Copy = {
 	name: string;
-	source: Source;
+	source: string;
 	shortName: string;
-	className: "Wizard";
-	classSource: Source;
+	className: string;
+	classSource: string;
 	preserve?: SubclassFluffPreserve;
 }
 
@@ -227,12 +225,12 @@ export type OtherSource = {
 
 export type SubclassFeature = {
 	name: string;
-	source: Source;
+	source: string;
 	page?: number;
-	className: "Wizard";
-	classSource: Source;
+	className: string;
+	classSource: string;
 	subclassShortName: string;
-	subclassSource: Source;
+	subclassSource: string;
 	level: number;
 	entries?: Array<IndigoEntry | string>;
 	header?: number;
@@ -246,11 +244,11 @@ export type SubclassFeature = {
 
 export type SubclassFeatureCopy = {
 	name: string;
-	source: Source;
-	className: "Wizard";
-	classSource: Source;
+	source: string;
+	className: string;
+	classSource: string;
 	subclassShortName: string;
-	subclassSource: Source;
+	subclassSource: string;
 	level: number;
 	preserve: PurplePreserve;
 }

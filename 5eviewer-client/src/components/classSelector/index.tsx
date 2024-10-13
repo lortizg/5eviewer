@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { ClassInfo, Source } from "../../types";
+import { ClassInfo } from "../../types";
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 
 export const ClassSelector = ({ selectedClass }: any) => {
@@ -25,13 +25,12 @@ export const ClassSelector = ({ selectedClass }: any) => {
 		const selectedArray: string[] = e.target.value.split('|');
 		childSetSelectedClass(e.target.value);
 
-		selectedClass({ class: classes[Number(selectedArray[0])], source: selectedArray[1] as Source });
+		selectedClass({ class: classes[Number(selectedArray[0])], source: selectedArray[1] });
 	}
 	useEffect(() => {
 		getInitialData();
 	}, [])
 
-	// useCallback()
 	return <>
 		{classes.length &&
 			<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
